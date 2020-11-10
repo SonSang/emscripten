@@ -178,7 +178,7 @@ if (ENVIRONMENT_IS_NODE) {
 #endif
 
 #if NODEJS_CATCH_EXIT
-  process['on']('uncaughtException', function(ex) {
+  process['once']('uncaughtException', function(ex) {
     // suppress ExitStatus exceptions from showing an error
     if (!(ex instanceof ExitStatus)) {
       throw ex;
@@ -187,7 +187,7 @@ if (ENVIRONMENT_IS_NODE) {
 #endif
 
 #if NODEJS_CATCH_REJECTION
-  process['on']('unhandledRejection', abort);
+  process['once']('unhandledRejection', abort);
 #endif
 
   quit_ = function(status) {
